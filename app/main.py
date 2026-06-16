@@ -1,8 +1,7 @@
 from fastapi import FastAPI
+from app.routes import hero, auth
 
 app = FastAPI()
 
-
-@app.get("/")
-def home():
-    return {"message": "Portfolio Backend Running"}
+app.include_router(router=hero.router)
+app.include_router(router=auth.router)
