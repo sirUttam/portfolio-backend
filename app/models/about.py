@@ -13,7 +13,7 @@ class About(Base):
 
     # right side
     image_url = Column(String, nullable=False)
-    right_text = Column(String, nullable=True)
+    image_text = Column(String, nullable=True)
     
     cards = relationship("AboutCard", back_populates='about')
 
