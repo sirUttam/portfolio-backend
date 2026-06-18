@@ -1,25 +1,22 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, HTTPException
 from app.database import get_db
 from sqlalchemy.orm import Session
 from app.models.hero import Hero
-from app.schemas.hero import HeroBase
-from app.schemas.hero import HeroBase
+from app.schemas.hero import HeroBase, HeroResponse
 from app.auth.dependencies import get_current_user
 
 router = APIRouter()
 
 
-@router.get("/")
+@router.get("/", response_model=HeroResponse)
 def get_hero(db: Session = Depends(get_db)):
     
     hero = db.query(Hero).first()
     
     if not hero:
-        return{
-            "title": "",
-            "subtitle": "",
-            "description": ""
-        }
+       raise HTTPException(
+           status_code=404, detail="Hero not found"
+       )
     
     return hero
 
@@ -27,7 +24,7 @@ def get_hero(db: Session = Depends(get_db)):
 
 # Protected route ( Updating the hero section ) -----------------------------------
 
-@router.put('/')
+@router.put('/', response_model=HeroResponse)
 def update_home(data:HeroBase, current_user: dict = Depends(get_current_user), db:Session = Depends(get_db)):
     
     # 1. check if hero exists

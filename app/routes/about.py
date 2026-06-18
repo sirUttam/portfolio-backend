@@ -1,33 +1,26 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from app.database import get_db
 from app.models.about import About, AboutCard
-from app.schemas.about import AboutModel
+from app.schemas.about import AboutModel, AboutResponse
 from app.auth.dependencies import get_current_user
 
 router = APIRouter()
 
-@router.get('/about')
+@router.get('/about', response_model=AboutResponse)
 def get_about(db: Session = Depends(get_db)):
     
     about = db.query(About).first()
 
     if not about:
-        return {
-            "about_title": "",
-            "subtitle": "",
-            "image_url": "",
-            "image_text": "",
-            "cards": {
-                "title": "",
-                "description":""
-            }
-        }
+        raise HTTPException(
+            status_code=404, detail="About not found"
+        )
     
     return about
 
 
-@router.put('/about')
+@router.put('/about', response_model=AboutResponse)
 def update_about(data:AboutModel, current_user: dict = Depends(get_current_user), db: Session = Depends(get_db)):
     
     about = db.query(About).first()
@@ -54,8 +47,7 @@ def update_about(data:AboutModel, current_user: dict = Depends(get_current_user)
             db.add(new_card)
             
         db.commit()
-        db.refresh(new_card)
-        
+        db.refresh(about)        
         return about
         
     # UPDATE existing about
@@ -64,8 +56,15 @@ def update_about(data:AboutModel, current_user: dict = Depends(get_current_user)
     about.image_url = data.image_url
     about.image_text = data.image_text
     
-    # Updating Cards Pending --------------------------------------------------------------------------------------------------
-    
+    # Update existing cards
+    for card_data in data.cards:
+        card = db.query(AboutCard).filter(AboutCard.id == card_data.id).first()
+        
+        if card:
+            card.title = card_data.title
+            card.description = card_data.description
+            
+        
     db.commit()
     db.refresh(about)
     
