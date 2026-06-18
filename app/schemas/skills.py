@@ -3,14 +3,13 @@ from pydantic import BaseModel
 
 # Input model for skills items
 class ItemsBase(BaseModel):
-    icon: str
-    title: str
-
+    icon: str | None = None
+    title: str | None = None
+ 
 
 # Input model for skills category
 class CategoryBase(BaseModel):
-    title: str
-    items: list[ItemsBase]
+    title: str | None = None
     
     
 
