@@ -5,6 +5,7 @@ from pydantic import BaseModel
 class ItemsBase(BaseModel):
     icon: str | None = None
     title: str | None = None
+    
  
 
 # Input model for skills category
