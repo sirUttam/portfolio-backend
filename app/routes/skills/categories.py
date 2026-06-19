@@ -10,7 +10,7 @@ router = APIRouter()
 
 # CRUD for Skills Category --------------------------------------------------------
 
-@router.get('/skills/', response_model=list[CategoryResponse])
+@router.get('/skills', response_model=list[CategoryResponse])
 def get_skills(db:Session = Depends(get_db)):
     
     skills = db.query(SkillsCategory).all()

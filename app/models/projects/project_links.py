@@ -1,10 +1,11 @@
 from sqlalchemy import Column, String, Integer, ForeignKey
 from app.database import Base
 from sqlalchemy.orm import relationship
+from app.models.base import TimeStampMixin
 
 
 
-class ProjectLinks(Base):
+class ProjectLinks(Base, TimeStampMixin):
     __tablename__ = "project_links"
     
     id = Column(Integer, primary_key=True)
@@ -13,4 +14,4 @@ class ProjectLinks(Base):
     
     project_id = Column(Integer, ForeignKey("project.id"))
 
-    project = relationship("Project", back_populates="links", cascade="all, delete")
+    project = relationship("Project", back_populates="links", lazy="selectin")
