@@ -7,6 +7,7 @@ from app.models.skills.items import SkillsItems
 from app.models.projects.project import Project
 from app.models.projects.project_links import ProjectLinks
 from app.models.projects.project_tools import ProjectTools
+from app.models.journey import Journey
 
 
 

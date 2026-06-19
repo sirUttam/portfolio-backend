@@ -3,6 +3,7 @@ from app.routes import hero, auth, about
 from app.routes.skills import categories, items
 from app.routes.projects import project, project_links, project_tools
 import app.models
+from app.routes import journey
 
 app = FastAPI()
 
@@ -14,5 +15,7 @@ app.include_router(router=items.router)
 app.include_router(router=project.router)
 app.include_router(router=project_links.router)
 app.include_router(router=project_tools.router)
+app.include_router(router=journey.router)
+
 
 
