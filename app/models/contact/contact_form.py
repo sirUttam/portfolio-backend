@@ -10,4 +10,4 @@ class ContactForm(Base, TimeStampMixin):
     id = Column(Integer, primary_key=True)
     name = Column(String, nullable=False)
     email = Column(String, nullable=False)
-    message = Column(Text)
+    message = Column(Text, nullable=False)

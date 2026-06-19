@@ -13,5 +13,4 @@ from app.models.contact.contact_links import ContactLinks
 
 
 
-
 Base.metadata.create_all(bind=engine)

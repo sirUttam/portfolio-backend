@@ -10,3 +10,4 @@ class ContactLinks(Base, TimeStampMixin):
     id = Column(Integer, primary_key=True)
     icon = Column(String, nullable=False)
     title = Column(String, nullable=False)
+    url = Column(String, nullable=False)
