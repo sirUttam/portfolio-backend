@@ -5,8 +5,16 @@ from pydantic import BaseModel
 class ItemsBase(BaseModel):
     icon: str | None = None
     title: str | None = None
+    category_id : int 
     
- 
+    
+# Update model fro Skills items
+class ItemsUpdate(BaseModel):
+    icon: str | None = None
+    title: str | None = None
+    category_id : int | None = None
+
+
 
 # Input model for skills category
 class CategoryBase(BaseModel):
