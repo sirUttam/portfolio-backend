@@ -8,6 +8,8 @@ from app.models.projects.project import Project
 from app.models.projects.project_links import ProjectLinks
 from app.models.projects.project_tools import ProjectTools
 from app.models.journey import Journey
+from app.models.contact.contact_form import ContactForm
+from app.models.contact.contact_links import ContactLinks
 
 
 
