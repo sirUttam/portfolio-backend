@@ -14,14 +14,14 @@ router = APIRouter()
 @router.get('/contact/links', response_model=list[ContactLinksResponse])
 def get_contact_links(db: Session = Depends(get_db)):
     
-    link = db.query(ContactLinks).all()
+    links = db.query(ContactLinks).all()
 
-    if not link:
+    if not links:
         raise HTTPException(
             status_code=404, detail="Links  not found"
         )
         
-    return link
+    return links
 
 
 

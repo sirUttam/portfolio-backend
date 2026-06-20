@@ -1,10 +1,10 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, EmailStr
 
 
 # Input Model
 class ContactFormBase(BaseModel):
     name: str
-    email: str
+    email: EmailStr
     message: str
     
     

@@ -10,7 +10,7 @@ from app.models.contact.contact_form import ContactForm
 router = APIRouter()
 
 
-@router.get('/contact/form', response_model=list[ContactFormResponse])
+@router.get('/contact/messages', response_model=list[ContactFormResponse])
 def get_form(current_user: dict = Depends(get_current_user), db: Session = Depends(get_db)):
     
     messages = db.query(ContactForm).all()
@@ -23,7 +23,7 @@ def get_form(current_user: dict = Depends(get_current_user), db: Session = Depen
     return messages
 
 
-@router.post('/contact/form', response_model=ContactFormResponse)
+@router.post('/contact/messages', response_model=ContactFormResponse)
 def create_form(data: ContactFormBase, db: Session = Depends(get_db)):
     
     
@@ -41,7 +41,7 @@ def create_form(data: ContactFormBase, db: Session = Depends(get_db)):
 
 
 
-@router.delete('/contact/form/{form_id}')
+@router.delete('/contact/messages/{form_id}')
 def delete_form(form_id: int, current_user:dict = Depends(get_current_user), db: Session = Depends(get_db)):
     
     message = db.query(ContactForm).filter(ContactForm.id == form_id).first()
