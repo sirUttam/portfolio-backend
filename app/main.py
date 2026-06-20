@@ -6,6 +6,8 @@ import app.models
 from app.routes import journey
 from app.routes.contact import contact_form
 from app.routes.contact import contact_links
+from app.routes import footer
+from app.routes import navbar
 
 app = FastAPI()
 
@@ -20,6 +22,10 @@ app.include_router(router=project_tools.router)
 app.include_router(router=journey.router)
 app.include_router(router=contact_links.router)
 app.include_router(router=contact_form.router)
+app.include_router(router=footer.router)
+app.include_router(router=navbar.router)
+
+
 
 
 
