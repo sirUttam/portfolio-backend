@@ -1,0 +1,87 @@
+# =========================
+# Python
+# =========================
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.so
+
+# virtual environments
+venv/
+env/
+ENV/
+.venv/
+
+# =========================
+# Environment variables
+# =========================
+.env
+.env.*
+!.env.example
+
+# =========================
+# FastAPI / Uvicorn
+# =========================
+*.log
+
+# =========================
+# Database (VERY IMPORTANT)
+# =========================
+*.sqlite3
+*.db
+
+# If using SQLite file
+*.sqlite
+
+# =========================
+# Migrations (Alembic)
+# =========================
+alembic/versions/*.pyc
+
+# =========================
+# IDEs
+# =========================
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# =========================
+# OS files
+# =========================
+.DS_Store
+Thumbs.db
+
+# =========================
+# Testing / Coverage
+# =========================
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+
+# =========================
+# Mypy / typing cache
+# =========================
+.mypy_cache/
+.dmypy.json
+
+# =========================
+# Build / distribution
+# =========================
+build/
+dist/
+*.egg-info/
+
+# =========================
+# Security sensitive files
+# =========================
+secrets.json
+credentials.json
+
+# =========================
+# Docker (optional cleanup)
+# =========================
+*.pid
