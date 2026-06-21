@@ -14,7 +14,8 @@ try:
     email = os.getenv("ADMIN_EMAIL")
     password = os.getenv("ADMIN_PASSWORD")
     
-    existing = db.query(Admin).filter(Admin.email == "blimshorts@gmail.com").first()
+    admin_email = os.getenv("ADMIN_EMAIL")
+    existing = db.query(Admin).filter(Admin.email == admin_email).first()
 
     if not existing:
         
