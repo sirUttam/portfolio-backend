@@ -41,6 +41,7 @@ app.add_middleware(
 )
 
 
-
-
-
+@app.on_event("startup")
+def startup():
+    from app.database import Base, engine
+    Base.metadata.create_all(bind=engine)
