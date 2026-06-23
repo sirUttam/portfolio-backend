@@ -8,6 +8,7 @@ from app.routes.contact import contact_form
 from app.routes.contact import contact_links
 from app.routes import footer
 from app.routes import navbar
+from init_db import init_db
 
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -29,6 +30,7 @@ app.include_router(router=footer.router)
 app.include_router(router=navbar.router)
 
 
+# CORS ---------------------------------------
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
@@ -40,8 +42,8 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# Initializing the tables creation 
 
 @app.on_event("startup")
 def startup():
-    from app.database import Base, engine
-    Base.metadata.create_all(bind=engine)
+    init_db()
