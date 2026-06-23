@@ -10,13 +10,13 @@ router = APIRouter()
 
 
 
-@router.get("/settings/navbar", response_model=NavbarResponse)
+@router.get("/navbar", response_model=NavbarResponse)
 def get_navbar(db: Session = Depends(get_db)):
     return db.query(SiteSettings).first()
 
 
 
-@router.put("/settings/navbar", response_model=NavbarResponse)
+@router.put("/navbar", response_model=NavbarResponse)
 def update_navbar(data: NavbarUpdate, current_user: dict = Depends(get_current_user), db: Session = Depends(get_db)):
 
     settings = db.query(SiteSettings).first()

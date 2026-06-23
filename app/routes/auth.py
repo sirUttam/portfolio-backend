@@ -11,7 +11,7 @@ router = APIRouter()
 
 
 # Login route for admin
-@router.post('/admin')
+@router.post('/login')
 def login(data: LoginBase, db: Session = Depends(get_db)):
     
     email = db.query(Admin).filter(Admin.email == data.email).first()

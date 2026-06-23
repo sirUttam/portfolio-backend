@@ -13,7 +13,6 @@ class ContactFormBase(BaseModel):
 class ContactFormResponse(BaseModel):
     id: int
     name: str
-    email: str
     message: str
     
     model_config = {
