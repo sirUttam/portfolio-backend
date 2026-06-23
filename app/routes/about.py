@@ -19,6 +19,15 @@ def db_check():
     
     
     
+from sqlalchemy import inspect
+
+@router.get("/db-tables")
+def db_tables():
+    inspector = inspect(engine)
+    return {"tables": inspector.get_table_names()}
+    
+    
+    
 
 @router.get('/about', response_model=AboutResponse)
 def get_about(db: Session = Depends(get_db)):
