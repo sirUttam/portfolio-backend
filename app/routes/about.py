@@ -7,6 +7,19 @@ from app.auth.dependencies import get_current_user
 
 router = APIRouter()
 
+
+from app.database import engine
+from sqlalchemy import text
+
+@router.get("/db-check")
+def db_check():
+    with engine.connect() as conn:
+        result = conn.execute(text("SELECT 1"))
+        return {"db": "connected", "result": result.scalar()}
+    
+    
+    
+
 @router.get('/about', response_model=AboutResponse)
 def get_about(db: Session = Depends(get_db)):
     
