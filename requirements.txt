@@ -5,3 +5,4 @@ python-dotenv
 pydantic
 passlib[argon2]
 python-jose[cryptography]
+email-validator
