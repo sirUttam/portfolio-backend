@@ -12,5 +12,7 @@ from app.models.contact.contact_form import ContactForm
 from app.models.contact.contact_links import ContactLinks
 
 
-
-Base.metadata.create_all(bind=engine)
+@app.on_event("startup")
+def startup():
+    Base.metadata.create_all(bind=engine)
+# Base.metadata.create_all(bind=engine)
